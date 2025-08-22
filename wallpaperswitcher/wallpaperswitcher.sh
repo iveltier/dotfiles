@@ -15,5 +15,5 @@ chosen=$(echo -e "$entries" | rofi -dmenu -i -p "choose wallpaper" -show-icons)
 # Wenn Auswahl getroffen wurde
 if [[ -n "$chosen" ]]; then
     swww img "$WALLPAPER_DIR/$chosen" --transition-type any --transition-duration 1.0
-    sudo cp "$WALLPAPER_DIR/$chosen" /usr/share/sddm/themes/silent/backgrounds/default.jpg
+    cp "$WALLPAPER_DIR/$chosen" /usr/share/sddm/themes/silent/backgrounds/default.jpg
 fi
