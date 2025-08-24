@@ -42,11 +42,11 @@ if [ -d .git ]; then
         git add .
         git commit -m "Backup on shutdown: $(date)"
         git push origin main
-	notify-send "backup done"
+	notify-send -u normal "backup done"
     else
-	notify-send "Keine Änderungen erkannt – kein Push notwendig."
+	notify-send -u low "no changes detected - no push required."
     fi
 else
-    notify-send "Warnung: $BACKUP_DIR ist kein Git-Repository."
+    notify-send -u critical "Warning: $BACKUP_DIR is not a Git-Repository."
 fi
 
