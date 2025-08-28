@@ -1,14 +1,14 @@
 return {
     { -- helps with ssh tunneling and copyin to clipboard
-	"ojroques/vim-oscyank",
+        "ojroques/vim-oscyank",
     },
     { -- git plugin
-    "tpope/vim-fugitive",
+        "tpope/vim-fugitive",
     },
     { --css colors
-	"brenoprata10/nvim-highlight-colors",
-	config = function()
-	    require("nvim-highlight-colors").setup({})
-	end
+        "brenoprata10/nvim-highlight-colors",
+        config = function()
+            require("nvim-highlight-colors").setup({})
+        end
     },
 }
