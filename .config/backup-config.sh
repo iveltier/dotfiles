@@ -40,7 +40,7 @@ if [ -d .git ]; then
     git add .
     if ! git diff --quiet || ! git diff --cached --quiet; then
         git add .
-        git commit -m "Backup on shutdown: $(date)"
+        git commit -m "Backup on: $(date)"
         git push origin main
 	notify-send -u normal "backup done"
     else
