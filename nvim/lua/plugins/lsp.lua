@@ -24,6 +24,8 @@ return {
             "jsx",
             "php",
             "c",
+            "s",
+            "asm",
             "conf",
             "cpp",
             "tsx",
