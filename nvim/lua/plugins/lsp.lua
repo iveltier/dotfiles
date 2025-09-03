@@ -120,7 +120,6 @@ return {
                 "lua_ls",
                 "intelephense",
                 "ts_ls",
-                "eslint",
             },
             handlers = {
                 -- this first function is the "default handler"
