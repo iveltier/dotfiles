@@ -1,5 +1,5 @@
 -- activate lsp
-vim.lsp.enable({ "lua_ls" })
+vim.lsp.enable({ "lua_ls", "html", "cssls" })
 -- activate autocompletion
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
@@ -36,4 +36,30 @@ vim.diagnostic.config({
 		-- Only show virtual line diagnostics for the current cursor line
 		current_line = true,
 	}
+})
+
+
+-- special config for diffrent lsps
+-- html
+
+local caps = vim.lsp.protocol.make_client_capabilities()
+caps.textDocument.completion.completionItem.snippetSupport = true
+vim.lsp.enable({
+	"html",
+	settings = {
+		html = {
+			completion = {
+				snippetSupport = true
+			}
+		}
+	},
+	capabilities = caps,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		if vim.lsp.get_client_by_id(ev.data.client_id).name == "html" then
+			vim.keymap.set("i", "<C-e>", "<Plug>(emmet-expand-abbr)", { buffer = ev.buf })
+		end
+	end,
 })
