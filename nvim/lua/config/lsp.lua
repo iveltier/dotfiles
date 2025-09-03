@@ -1,6 +1,6 @@
--- Aktiviert LSP für Lua
-vim.lsp.enable({ "lua_ls", "asm-lsp" })
--- Autocompletion aktivieren (Neovim 0.11+)
+-- activate lsp
+vim.lsp.enable({ "lua_ls" })
+-- activate autocompletion
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 		end
-		-- Keybindings für LSP-Funktionen
+		-- keybinds
 		local opts = { buffer = ev.buf }
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -20,14 +20,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end)
 	end,
 })
--- Formatierung beim Speichern
+-- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function(args)
 		vim.lsp.buf.format({ bufnr = args.buf })
 	end,
 })
 
--- Fehlerdiagnosen als virtuelle Textzeilen anzeigen
+-- diagnostics
 vim.diagnostic.config({
 	-- virtual_lines = true
 
