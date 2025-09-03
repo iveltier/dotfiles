@@ -1,10 +1,10 @@
 vim.opt.number = true
 vim.opt.cursorline = true
 
--- lsp keybinds
+-- options
 vim.opt.relativenumber = true
 vim.opt.shiftwidth = 4
-vim.opt.clipboard = undamedplus
+vim.opt.clipboard = unnamedplus
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
 	callback = function()
@@ -14,10 +14,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- diagnostics
 vim.diagnostic.config({
-	-- virtual_lines = true
-	-- Alternatively, customize specific options
-	virtual_lines = {
-		-- Only show virtual line diagnostics for the current cursor line
-		current_line = true,
-	}
+	virtual_text = true
+})
+-- format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function(args)
+		vim.lsp.buf.format({ bufnr = args.buf })
+	end,
 })
