@@ -1,7 +1,10 @@
+-- set leader (space)
 vim.g.mapleader = " "
+-- explorer keybind
 vim.keymap.set("n", "<leader>cd", vim.cmd.Oil)
 
-    vim.api.nvim_create_autocmd("LspAttach", {
+-- lsp keybind
+vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
@@ -20,3 +23,5 @@ vim.keymap.set("n", "<leader>cd", vim.cmd.Oil)
 		end)
 	end,
 })
+-- also alow :W and :w
+vim.api.nvim_create_user_command('W', 'w', {})
