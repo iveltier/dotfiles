@@ -5,22 +5,13 @@ return {
 
 	version = '1.*',
 	opts = {
-		["<CR>"] = {
-			-- 1. Wenn Menü offen, Eintrag akzeptieren + Enter einfügen
-			function(cmp)
-				if cmp.visible() then
-					-- Eintrag einfügen
-					cmp.accept({ select = true })
-					-- echten CR nachschicken
-					local cr = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
-					vim.api.nvim_feedkeys(cr, "i", false)
-					return true -- keine weiteren Mappings ausführen
-				end
-			end,
-			-- 2. Ist Menü nicht sichtbar -> normaler Enter
-			"fallback",
+		keymap = {
+			preset = "default",
+			["<CR>"] = { "accept", "fallback" },
+			["<Tab>"] = { "select_next", "fallback" },
+			["<S-Tab>"] = { "select_prev", "fallback" },
+			["<C><leader>"] = { "show" },
 		},
-		["<C><leader>"] = { "show" },
 		appearance = {
 			nerd_font_variant = 'mono'
 		},
