@@ -24,7 +24,7 @@ return {
 		config = function(_, opts)
 			require("mason").setup()
 			require("mason-lspconfig").setup(
-				{ ensure_installed = { "lua_ls", "eslint" } }
+				{ ensure_installed = { "lua_ls" } }
 			)
 
 			for server, config in pairs(opts.servers) do
