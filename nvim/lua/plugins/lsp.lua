@@ -1,67 +1,70 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig",
-      "jose-elias-alvarez/null-ls.nvim",
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      -- Mason Setup
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "tsserver",      -- für JS/TS
-          "eslint",        -- optional
-          "tailwindcss",   -- falls du Tailwind nutzt
+    {
+        "williamboman/mason.nvim",
+        dependencies = {
+            "mason-org/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+            "nvimtools/none-ls.nvim",       -- Fork von null-ls
+            "jay-babu/mason-null-ls.nvim", -- Mason Integration
         },
-      })
-
-      local lspconfig = require("lspconfig")
-
-      -- LSP Server Setup
-      lspconfig.lua_ls.setup({
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
+        opts = {
+            servers = {
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" }
+                            },
+                        },
+                    },
+                },
+                tsserver = {},    -- JavaScript/TypeScript
+                eslint = {},      -- ESLint
+                tailwindcss = {}, -- TailwindCSS
             },
-          },
         },
-      })
+        config = function(_, opts)
+            local mason = require("mason")
+            local mason_lspconfig = require("mason-lspconfig")
+            local lspconfig = require("lspconfig")
+            local null_ls = require("null-ls") -- Modulname bleibt "null-ls"
+            local mason_null_ls = require("mason-null-ls")
 
-      lspconfig.tsserver.setup({})
-      lspconfig.eslint.setup({})
-      lspconfig.tailwindcss.setup({})
-
-      -- null-ls Setup für Formatierung
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = {
-          -- Prettier Daemon (installiert via :MasonInstall prettierd)
-          null_ls.builtins.formatting.prettierd.with({
-            extra_args = { "--semi", "true" }, -- erzwingt Semikolons
-          }),
-
-          -- Optional: ESLint für zusätzliche Checks
-          null_ls.builtins.diagnostics.eslint_d,
-          null_ls.builtins.code_actions.eslint_d,
-        },
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = bufnr })
-              end,
+            -- Mason Setup
+            mason.setup()
+            mason_lspconfig.setup({
+                ensure_installed = { "lua_ls", "tsserver", "eslint", "tailwindcss" },
             })
-          end
+
+            -- LSP Server Setup (direkt, ohne setup_handlers)
+            for server, config in pairs(opts.servers) do
+                lspconfig[server].setup(config)
+            end
+
+            -- Formatter & Linter via none-ls (require("null-ls"))
+            mason_null_ls.setup({
+                ensure_installed = { "prettier", "eslint_d" },
+            })
+
+            null_ls.setup({
+                sources = {
+                    -- Prettier mit Semikolon
+                    null_ls.builtins.formatting.prettier.with({
+                        extra_args = { "--semi", "true", "--single-quote", "true" },
+                    }),
+                    -- ESLint
+                    null_ls.builtins.diagnostics.eslint_d,
+                    null_ls.builtins.code_actions.eslint_d,
+                },
+            })
+
+            -- Autoformat bei Save
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                callback = function()
+                    vim.lsp.buf.format({ async = false })
+                end,
+            })
         end,
-      })
-    end,
-  },
+    },
 }
 
