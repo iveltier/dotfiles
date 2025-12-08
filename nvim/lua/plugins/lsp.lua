@@ -1,53 +1,37 @@
+
 return {
-  {
-    "williamboman/mason.nvim",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig",
-      "stevearc/conform.nvim",   -- neuer Formatter
-    },
-    config = function()
-      -- Mason Setup
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "ts_ls",        -- neuer Name statt tsserver
-          "eslint",
-          "tailwindcss",
-        },
-      })
+	{
+		"williamboman/mason.nvim",
+		dependencies = {
+			"mason-org/mason-lspconfig.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		opts = {
+			servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" }
+							},
+						},
+					},
+				},
+				ts_ls = {},
+				eslint = {},
+				tailwindcss = {},
+			},
+		},
+		config = function(_, opts)
+			require("mason").setup()
+			require("mason-lspconfig").setup(
+				{ ensure_installed = { "lua_ls" } }
+			)
 
-      -- Neue API: vim.lsp.config statt lspconfig.setup
-      vim.lsp.config("lua_ls", {
-        settings = {
-          Lua = {
-            diagnostics = { globals = { "vim" } },
-          },
-        },
-      })
-
-      vim.lsp.config("ts_ls", {})
-      vim.lsp.config("eslint", {})
-      vim.lsp.config("tailwindcss", {})
-
-      -- Conform Setup für Formatierung
-      require("conform").setup({
-        format_on_save = {
-          timeout_ms = 500,
-          lsp_fallback = true,
-        },
-        formatters_by_ft = {
-          javascript = { "prettierd" },
-          typescript = { "prettierd" },
-          javascriptreact = { "prettierd" },
-          typescriptreact = { "prettierd" },
-          json = { "prettierd" },
-          css = { "prettierd" },
-          html = { "prettierd" },
-        },
-      })
-    end,
-  },
+			for server, config in pairs(opts.servers) do
+				vim.lsp.config(server, config)
+				vim.lsp.enable(server)
+			end
+		end
+	},
 }
-
