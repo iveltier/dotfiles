@@ -18,7 +18,7 @@ require("lazy").setup({
 	spec = {
 		-- import your plugins
 		{ import = "plugins" },
-		{ import = "plugins.lsp"}
+		{ import = "plugins.lsp" }
 	},
 	change_detection = { notify = false },
 })
