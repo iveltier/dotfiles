@@ -5,12 +5,12 @@ vim.opt.cursorline = true
 vim.opt.relativenumber = true
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = unnamedplus
-vim.api.nvim_create_autocmd("BufWritePre", {
+--[[vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
 	callback = function()
 		vim.lsp.buf.format({ async = false })
 	end,
-})
+})]]
 
 -- diagnostics
 vim.diagnostic.config({
