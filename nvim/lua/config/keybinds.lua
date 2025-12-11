@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-			vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
+			vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 		end
 		-- keybinds
@@ -18,10 +18,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set('i', '<C-Space>', function()
+		vim.keymap.set("i", "<C-Space>", function()
 			vim.lsp.completion.get()
 		end)
 	end,
 })
 -- also alow :W and :w
-vim.api.nvim_create_user_command('W', 'w', {})
+vim.api.nvim_create_user_command("W", "w", {})
+-- return to startscreen
+vim.keymap.set("n", "<leader>io", vim.cmd.Alpha)
