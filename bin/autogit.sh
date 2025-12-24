@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # autogit – vereinfachtes „git add . && commit && push“ mit Sicherheitsabfrage
 
-read -rp "Commit-message: " msg
+read -rp "commit-message: " msg
 echo
 echo "Git Status:"
 git status --short
@@ -15,6 +15,6 @@ case "$yesno" in
     git push origin main
     ;;
   *)
-    echo "Abbruch – nichts unternommen."
+    echo "Abort, nothing done"
     ;;
 esac

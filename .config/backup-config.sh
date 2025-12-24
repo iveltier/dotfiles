@@ -19,6 +19,7 @@ FOLDERS=(
     "/usr/local/bin/tux"
     "/usr/local/bin/power-menu.sh"
     "$HOME/.config/backup-config.sh"
+
 )
 
 # Synchronisieren
