@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 # autogit – vereinfachtes „git add . && commit && push“ mit Sicherheitsabfrage
 # Leer-Eingabe → Default-Message "readme update"
-
-read -rp "commit-message [readme update]: " msg
-msg=${msg:-readme update}
-
-echo
 echo "Git Status:"
 git status --short
+echo
+read -rp "commit-message [readme update]: " msg
+msg=${msg:-readme update}
 echo
 echo "Commit message: \"$msg\""
 echo
