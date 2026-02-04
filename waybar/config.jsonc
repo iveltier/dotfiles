@@ -180,7 +180,7 @@
 		"format-linked": "{ifname} (No IP)",
 		"format-disconnected": "Disconnected ⚠",
 		"format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
-		"on-click-right": "kitty -e impala"
+		"on-click-right": "kitty -e nmtui"
 	},
 	"bluetooth": {
 		"format": " {status}",
