@@ -4,7 +4,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
-map("n", "<leader>cd", vim.cmd.Oil, { desc = "focus n nvim tree" })
+map("n", "<leader>cd", vim.cmd.Oil, { desc = "OIL enable oil tree" })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
