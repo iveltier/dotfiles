@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "carbonfox",
+  theme = "catppuccin",
   transparency = true,
 
   -- hl_override = {
@@ -16,21 +16,19 @@ M.base46 = {
 }
 
 M.nvdash = { load_on_startup = true }
-M.ui = {
-  tabufline = {
-    lazyload = false,
-  },
-}
 
 M.ui = {
+  tabufline = {
+    lazyload = true,
+  },
   statusline = {
     theme = "default",
     separator_style = "round",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "abc", "cursor" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "tux", "cursor" },
     modules = {
-      abc = function()
-        return "\uf31a"
-      end,
+
+      tux = " ",
+      com = "󱢇 ",
 
       f = "%F",
     },
