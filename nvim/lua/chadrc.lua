@@ -22,4 +22,19 @@ M.ui = {
   },
 }
 
+M.ui = {
+  statusline = {
+    theme = "default",
+    separator_style = "round",
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "abc", "cursor" },
+    modules = {
+      abc = function()
+        return "\uf31a"
+      end,
+
+      f = "%F",
+    },
+  },
+}
+
 return M
