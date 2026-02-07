@@ -14,6 +14,10 @@ return {
   },
 
   {
+    "mfussenegger/nvim-dap",
+  },
+
+  {
     "stevearc/oil.nvim",
     opts = {},
     -- Optional: Dependencies for icons

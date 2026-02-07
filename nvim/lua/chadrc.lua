@@ -24,11 +24,14 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "round",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "tux", "cursor" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "icon", "cursor" },
     modules = {
 
-      tux = " ",
-      com = "󱢇 ",
+      icon = function()
+        local icons = { " ", "  ", " ", "󱢇 ", " ", " " }
+        math.randomseed(os.time())
+        return icons[math.random(#icons)]
+      end,
 
       f = "%F",
     },
