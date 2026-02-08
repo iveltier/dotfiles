@@ -39,6 +39,5 @@ map({ "n", "t" }, "<A-f>", function()
   term.toggle {
     pos = "float",
     id = "cpp_runner",
-    cmd = "cd Documents/",
   }
 end)
