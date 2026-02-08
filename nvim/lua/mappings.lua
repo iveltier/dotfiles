@@ -32,11 +32,11 @@ map({ "n", "t" }, "<A-f>", function()
   }
 end, { desc = "Toggle cd terminal" })
 
--- Alt+R: C++ Compile & Run (Toggle)
+-- Alt+R: C++ Compile & Run
 map({ "n", "t" }, "<A-r>", function()
   term.runner {
-    id = "cpp_runner", -- Eindeutige ID für Toggle
-    pos = "float", -- Floating Terminal
+    id = "cpp_runner",
+    pos = "float",
 
     cmd = function()
       local file = vim.fn.expand "%:p" -- /home/user/proj/main.cpp
@@ -46,21 +46,9 @@ map({ "n", "t" }, "<A-r>", function()
       -- cd in Verzeichnis, kompilieren mit g++, ausführen
       return string.format('cd "%s" && cpp "%s" && "./%s"', dir, file, name)
     end,
-
-    clear_cmd = false, -- Verlauf NICHT löschen (Fehlermeldungen bleiben)
-
-    -- Float Optionen (optional, überschreibt defaults aus chadrc)
-    float_opts = {
-      row = 0.15,
-      col = 0.15,
-      width = 0.7,
-      height = 0.7,
-      border = "rounded",
-      title = " C++ Compile & Run ",
-      title_pos = "center",
-    },
+    clear_cmd = false,
   }
-end, { desc = "C++ Compile & Run (Toggle)" })
+end, { desc = "C++ Compile & Run" })
 
 -- Terminal-Mode: ESC zum Verlassen des Insert-Mode
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
