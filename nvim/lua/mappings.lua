@@ -17,6 +17,19 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
-vim.keymap.set({ "n", "t" }, "<A-c>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+-- run cpp code terminal
+local term = require "nvchad.term"
+
+map({ "n", "t" }, "<A-r>", function()
+  term.toggle {
+    pos = "float",
+    id = "cpp_runner",
+
+    cmd = function()
+      local file = vim.fn.expand "%:p"
+      local name = vim.fn.expand "%:r"
+
+      return string.format("clear && cpp %s && echo && './%s'", file, name, name)
+    end,
+  }
 end)
