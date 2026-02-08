@@ -24,6 +24,7 @@ map({ "n", "t" }, "<A-r>", function()
   term.toggle {
     pos = "float",
     id = "cpp_runner",
+    clear_cmd = false,
 
     cmd = function()
       local file = vim.fn.expand "%:p"
@@ -31,5 +32,13 @@ map({ "n", "t" }, "<A-r>", function()
 
       return string.format("clear && cpp %s && echo && './%s'", file, name, name)
     end,
+  }
+end)
+
+map({ "n", "t" }, "<A-f>", function()
+  term.toggle {
+    pos = "float",
+    id = "cpp_runner",
+    cmd = "cd Documents/",
   }
 end)
