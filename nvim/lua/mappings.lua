@@ -20,22 +20,7 @@ map("i", "jk", "<ESC>")
 -- run cpp code terminal
 local term = require "nvchad.term"
 
-vim.keymap.set({ "n", "t" }, "<A-r>", function()
-  term.runner {
-    pos = "float",
-    id = "cpp_float_runner",
-    clear_cmd = "", -- wichtig: kein boolean, sonst NVChad-Fehler
-
-    cmd = function()
-      local dir = vim.fn.expand "%:p:h"
-      local file = vim.fn.expand "%:t"
-      local name = vim.fn.expand "%:r"
-
-      return string.format("cd '%s' && cpp '%s' && './%s'", dir, file, name)
-    end,
-  }
-end)
-
+-- Alt+F: Toggle Float Terminal mit cd in aktuelles Verzeichnis
 map({ "n", "t" }, "<A-f>", function()
   term.toggle {
     pos = "float",
@@ -45,4 +30,37 @@ map({ "n", "t" }, "<A-f>", function()
       return "cd '" .. dir .. "'"
     end,
   }
-end)
+end, { desc = "Toggle cd terminal" })
+
+-- Alt+R: C++ Compile & Run (Toggle)
+map({ "n", "t" }, "<A-r>", function()
+  term.runner {
+    id = "cpp_runner", -- Eindeutige ID für Toggle
+    pos = "float", -- Floating Terminal
+
+    cmd = function()
+      local file = vim.fn.expand "%:p" -- /home/user/proj/main.cpp
+      local dir = vim.fn.expand "%:p:h" -- /home/user/proj
+      local name = vim.fn.expand "%:t:r" -- main (ohne .cpp)
+
+      -- cd in Verzeichnis, kompilieren mit g++, ausführen
+      return string.format('cd "%s" && cpp "%s" && "./%s"', dir, file, name)
+    end,
+
+    clear_cmd = false, -- Verlauf NICHT löschen (Fehlermeldungen bleiben)
+
+    -- Float Optionen (optional, überschreibt defaults aus chadrc)
+    float_opts = {
+      row = 0.15,
+      col = 0.15,
+      width = 0.7,
+      height = 0.7,
+      border = "rounded",
+      title = " C++ Compile & Run ",
+      title_pos = "center",
+    },
+  }
+end, { desc = "C++ Compile & Run (Toggle)" })
+
+-- Terminal-Mode: ESC zum Verlassen des Insert-Mode
+map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
