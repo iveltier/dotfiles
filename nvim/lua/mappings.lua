@@ -21,16 +21,16 @@ map("i", "jk", "<ESC>")
 local term = require "nvchad.term"
 
 map({ "n", "t" }, "<A-r>", function()
-  term.toggle {
-    pos = "float",
+  term.runner {
+    pos = "vsp",
     id = "cpp_runner",
     clear_cmd = false,
-
     cmd = function()
-      local file = vim.fn.expand "%:p"
+      local dir = vim.fn.expand "%:p:h"
+      local file = vim.fn.expand "%:t"
       local name = vim.fn.expand "%:r"
 
-      return string.format("clear && cpp %s && echo && './%s'", file, name, name)
+      return string.format("cd '%s' && clear && g++ -std=c++20 '%s' -o '%s' && './%s'", dir, file, name, name)
     end,
   }
 end)
@@ -38,6 +38,10 @@ end)
 map({ "n", "t" }, "<A-f>", function()
   term.toggle {
     pos = "float",
-    id = "cpp_runner",
+    id = "cd_term",
+    cmd = function()
+      local dir = vim.fn.expand "%:p:h"
+      return "cd '" .. dir .. "'"
+    end,
   }
 end)
