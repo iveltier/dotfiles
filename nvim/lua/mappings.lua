@@ -20,17 +20,18 @@ map("i", "jk", "<ESC>")
 -- run cpp code terminal
 local term = require "nvchad.term"
 
-map({ "n", "t" }, "<A-r>", function()
+vim.keymap.set({ "n", "t" }, "<A-r>", function()
   term.runner {
-    pos = "vsp",
-    id = "cpp_runner",
-    clear_cmd = false,
+    pos = "float",
+    id = "cpp_float_runner",
+    clear_cmd = "", -- wichtig: kein boolean, sonst NVChad-Fehler
+
     cmd = function()
       local dir = vim.fn.expand "%:p:h"
       local file = vim.fn.expand "%:t"
       local name = vim.fn.expand "%:r"
 
-      return string.format("cd '%s' && clear && g++ -std=c++20 '%s' -o '%s' && './%s'", dir, file, name, name)
+      return string.format("cd '%s' && cpp '%s' && './%s'", dir, file, name)
     end,
   }
 end)
