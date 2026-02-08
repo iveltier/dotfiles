@@ -34,17 +34,14 @@ end, { desc = "Toggle cd terminal" })
 
 -- Alt+R: C++ Compile & Run
 map({ "n", "t" }, "<A-r>", function()
-  term.runner {
+  term.toggle {
     id = "cpp_runner",
     pos = "float",
 
     cmd = function()
-      local file = vim.fn.expand "%:p" -- /home/user/proj/main.cpp
       local dir = vim.fn.expand "%:p:h" -- /home/user/proj
-      local name = vim.fn.expand "%:t:r" -- main (ohne .cpp)
 
-      -- cd in Verzeichnis, kompilieren mit g++, ausführen
-      return string.format('cd "%s" && cpp "%s" && "./%s"', dir, file, name)
+      return string.format('cd "%s" && /usr/local/bin/livecpp.sh', dir)
     end,
     clear_cmd = false,
   }
