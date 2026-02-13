@@ -7,7 +7,7 @@ local M = {}
 
 M.base46 = {
   theme = "tokyonight",
-  transparency = false,
+  transparency = true,
 
   -- hl_override = {
   -- 	Comment = { italic = true },
@@ -18,7 +18,6 @@ M.base46 = {
 M.nvdash = {
   load_on_startup = false,
 }
-
 M.ui = {
   tabufline = {
     lazyload = true,
