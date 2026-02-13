@@ -40,4 +40,15 @@ M.ui = {
   },
 }
 
+M.lazy_nvim = {
+  -- Wichtig: Stelle sicher dass Treesitter vor LSP lädt
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        -- NICHT "syntax" oder "filetype" disablen!
+      },
+    },
+  },
+}
+
 return M
