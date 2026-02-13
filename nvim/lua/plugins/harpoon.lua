@@ -26,23 +26,28 @@ end
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
+  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
   config = function()
     local harpoon = require "harpoon"
+
     vim.keymap.set("n", "<leader>a", function()
       harpoon:list():add()
-    end)
+    end, { desc = "Harpoon add a file to harpoon" })
+
     vim.keymap.set("n", "<C-e>", function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
-    end)
+    end, { desc = "Harpoon toggle quick menu" })
+
     vim.keymap.set("n", "<leader>fl", function()
       toggle_telescope(harpoon:list())
-    end, { desc = "Open harpoon window" })
+    end, { desc = "Harpoon Open telescope window" })
+
     vim.keymap.set("n", "<C-p>", function()
       harpoon:list():prev()
-    end)
+    end, { desc = "Harpoon list prev" })
     --        vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
   end,
 }
