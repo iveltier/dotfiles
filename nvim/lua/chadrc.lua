@@ -8,7 +8,7 @@ local M = {}
 M.base46 = {
   theme = "tokyonight-night",
   theme_toggle = { "tokyonight-night", "onedark" },
-  transparency = false,
+  transparency = true,
 
   -- hl_override = {
   -- 	Comment = { italic = true },
@@ -36,17 +36,6 @@ M.ui = {
       end,
 
       f = "%F",
-    },
-  },
-}
-
-M.lazy_nvim = {
-  -- Wichtig: Stelle sicher dass Treesitter vor LSP lädt
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        -- NICHT "syntax" oder "filetype" disablen!
-      },
     },
   },
 }
