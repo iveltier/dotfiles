@@ -10,5 +10,11 @@ return {
     opts = {
       automatic_installation = true,
     },
+    config = function()
+      require("mason-lspconfig").setup {
+        ensure_installed = { "clangd", "html", "cssls", "vtsls" },
+        automatic_installation = false,
+      }
+    end,
   },
 }

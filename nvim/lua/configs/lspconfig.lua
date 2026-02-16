@@ -12,3 +12,6 @@ require("nvchad.configs.lspconfig").defaults()
 for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
   vim.lsp.enable(server)
 end
+vim.lsp.config["clangd"] = {
+  cmd = { "clangd" },
+}
