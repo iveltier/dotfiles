@@ -47,5 +47,22 @@ map({ "n", "t" }, "<A-r>", function()
   }
 end, { desc = "C++ Compile & Run" })
 
+map({ "n", "t" }, "<A-e>", function()
+  term.toggle {
+    id = "asm_runner",
+    pos = "float",
+
+    cmd = function()
+      local dir = vim.fn.expand "%:p:h"
+      return string.format('cd "%s" && /usr/local/bin/liveasm.sh', dir)
+    end,
+
+    clear_cmd = true,
+    on_open = function()
+      vim.cmd "startinsert!"
+    end,
+  }
+end, { desc = "Asm Compile & Run" })
+
 -- Terminal-Mode: ESC zum Verlassen des Insert-Mode
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
