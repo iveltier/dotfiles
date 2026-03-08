@@ -14,7 +14,7 @@ if [[ -f "$LAST" ]]; then
             swww img "$file" --transition-type any --transition-duration 1.0
             ;;
         gif|mp4)
-            mpvpaper -o "loop=yes" "*" "$file"
+            mpvpaper -o "loop=yes panscan=1" "*" "$file"
             ;;
     esac
 fi
