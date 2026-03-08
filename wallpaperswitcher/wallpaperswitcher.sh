@@ -7,7 +7,7 @@ entries=""
 while IFS= read -r img; do
     name=$(basename "$img")
     entries+="$name\x00icon\x1f$img\n"
-done < <(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" \) | sort)
+done < <(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -oname "*.mp4" \) | sort)
 
 # Auswahl mit Rofi und Icons
 chosen=$(echo -e "$entries" | rofi -dmenu -i -p "choose wallpaper" -show-icons)
