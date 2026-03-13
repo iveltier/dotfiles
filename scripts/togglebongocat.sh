@@ -16,7 +16,7 @@ if [ -f "$PIDFILE" ]; then
     fi
 else
     # BongoCat starten
-    bongocat &
+    bongocat --watch-config &
     PID=$!
     echo $PID > "$PIDFILE"
 fi
