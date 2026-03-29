@@ -1,5 +1,4 @@
-# !/bin/bash
-
+#!/bin/bash
 # WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 # LAST="$HOME/.cache/last_wallpaper"
 # CACHE_DIR="$HOME/.cache/wallpaper_history"
@@ -109,7 +108,6 @@
 # fi
 #
 
-# !/bin/bash
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 LAST="$HOME/.cache/last_wallpaper"
 # Liste der Bilder/Videos vorbereiten
@@ -134,7 +132,7 @@ if [[ -n "$chosen" ]]; then
     case "$ext" in
         jpg|jpeg|png)
             # Statisches Bild → swww
-            swww img "$file" --transition-type any --transition-duration 1.0
+            awww img "$file" --transition-type any --transition-duration 1.0
 
             # SDDM Hintergrund aktualisieren
             cp "$file" /usr/share/sddm/themes/silent/backgrounds/default.mp4
