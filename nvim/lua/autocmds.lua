@@ -17,7 +17,7 @@ local bongo_job = nil
 vim.api.nvim_create_autocmd("VimEnter", {
   pattern = "*",
   callback = function()
-    bongo_job = vim.fn.jobstart("sleep 2 && bongocat --watch-config", { detach = false })
+    bongo_job = vim.fn.jobstart("sleep 1.5 && bongocat --watch-config", { detach = false })
   end,
 })
 
