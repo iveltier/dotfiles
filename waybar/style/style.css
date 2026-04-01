@@ -15,7 +15,7 @@ window#waybar.empty #window {
 }
 
 window#waybar {
-  background: rgba(21, 18, 27, 0);
+  background: #15121b00;
   color: #cdd6f4;
 }
 

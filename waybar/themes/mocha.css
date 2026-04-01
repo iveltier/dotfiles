@@ -1,24 +1,16 @@
-@define-color bg#1e1e2e;
-@define-color bg-alt #313244;
-@define-color bg-hover #45475a;
-@define-color fg #cdd6f4;
-@define-color fg-dim #6c7086;
-@define-color border #6c7086;
-@define-color border-active #b4befe;
-
-@define-color accent #f5c2e7;
-
-@define-color rosewater #f5e0dc;
-@define-color flamingo #f2cdcd;
-@define-color pink #f5c2e7;
-@define-color mauve #cba6f7;
-@define-color red #f38ba8;
-@define-color maroon #eba0ac;
+@define-color transparent-bg transparent;
+@define-color base #1e1e2e;
+@define-color base-alpha rgba(30, 30, 46, 0.8);
+@define-color mantle #181825;
+@define-color crust #11111b;
+@define-color text #cdd6f4;
+@define-color subtext0 #a6adc8;
+@define-color surface0 #313244;
+@define-color flamingo #eba0ac;
+@define-color green #a6e3a1;
 @define-color peach #fab387;
 @define-color yellow #f9e2af;
-@define-color green #a6e3a1;
-@define-color teal #94e2d5;
-@define-color sky #89dceb;
-@define-color sapphire #74c7ec;
 @define-color blue #89b4fa;
-@define-color lavender #b4befe;
+@define-color mauve #cba6f7;
+@define-color red-critical #cf130c;
+@define-color yellow-warning #eb941a;
