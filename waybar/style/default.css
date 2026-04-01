@@ -158,11 +158,11 @@ tooltip {
 }
 
 #battery.critical {
-  color: @red-critical;
+  color: @red;
 }
 
 #battery.warning {
-  color: @yellow-warning;
+  color: @orange;
 }
 
 #custom-weather {

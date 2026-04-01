@@ -1,0 +1,16 @@
+@define-color transparent-bg transparent;
+@define-color base #2b3339;
+@define-color base-alpha rgba(43, 51, 57, 0.8);
+@define-color mantle #272e33;
+@define-color crust #1e2326;
+@define-color text #d3c6aa;
+@define-color subtext0 #9da9a0;
+@define-color surface0 #3a4248;
+@define-color flamingo #e67e80;
+@define-color green #a7c080;
+@define-color peach #e69875;
+@define-color yellow #dbbc7f;
+@define-color blue #7fbbb3;
+@define-color mauve #d699b6;
+@define-color red #e67e80;
+@define-color orange #e69875;

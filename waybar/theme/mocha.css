@@ -12,5 +12,5 @@
 @define-color yellow #f9e2af;
 @define-color blue #89b4fa;
 @define-color mauve #cba6f7;
-@define-color red-critical #cf130c;
-@define-color yellow-warning #eb941a;
+@define-color red #cf130c;
+@define-color orange #eb941a;
