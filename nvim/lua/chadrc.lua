@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "tokyonight-night",
-  theme_toggle = { "tokyonight-night", "onedark" },
+  theme = "everforest",
+  theme_toggle = { "everforest", "onedark" },
   transparency = true,
 
   -- hl_override = {
