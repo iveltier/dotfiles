@@ -4,9 +4,10 @@
 
 ---@type ChadrcConfig
 local M = {}
+local theme = require "theme"
 
 M.base46 = {
-  theme = "tokyonight-night",
+  theme = theme,
   theme_toggle = { "tokyonight-night", "onedark" },
   transparency = true,
 
