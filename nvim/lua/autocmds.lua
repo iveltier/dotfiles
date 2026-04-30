@@ -30,3 +30,25 @@ vim.api.nvim_create_autocmd("VimLeave", {
     end
   end,
 })
+
+-- Reload theme.lua automatically after saving it
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = vim.fn.expand "~/.config/nvim/lua/theme.lua",
+  callback = function()
+    -- NVChad UI Module Cache leeren
+    for module, _ in pairs(package.loaded) do
+      if module:match "^nvchad" or module:match "^chad" then
+        package.loaded[module] = nil
+      end
+    end
+
+    -- Dein Theme neu laden
+    package.loaded["theme"] = nil
+    require "theme"
+
+    -- NVChad UI reload
+    require("nvchad").reload()
+
+    vim.notify("Theme reloaded!", vim.log.levels.INFO)
+  end,
+})
