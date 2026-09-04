@@ -83,3 +83,9 @@ end, { desc = "Node Compile & Run" })
 
 -- Terminal-Mode: ESC zum Verlassen des Insert-Mode
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map(
+  "n",
+  "<Leader>ff",
+  ':lua require"telescope.builtin".find_files({ hidden = true })<CR>',
+  { noremap = true, silent = true }
+)
