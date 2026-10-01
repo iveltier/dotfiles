@@ -6,5 +6,5 @@ if [[ "$chosen" == "⏻ Shutdown" ]]; then
 elif [[ "$chosen" == "⟳ Restart" ]]; then
     systemctl reboot
 elif [[ "$chosen" == "⊘ Logout" ]]; then
-    hyprctl dispatch exit
+    hyprshutdown
 fi
